@@ -14,6 +14,6 @@ I've done that year's (2025) challenges for fun and to practice with Rust langua
 
 
 ## Puzzles
-
+- [ ] Day 1: Secret Entrance
 
 ---

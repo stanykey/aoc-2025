@@ -75,3 +75,7 @@ Following these rotations would cause the dial to move as follows:
   Because the dial points at `0` a total of three times during this process, the password in this example is **3**.
 
 Analyze the rotations in your attached document. **What's the actual password to open the door?**
+
+Your puzzle answer was `1165`.
+
+**__The first half of this puzzle is complete! It provides one gold star: *__**
