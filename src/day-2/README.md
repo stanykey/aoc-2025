@@ -44,3 +44,5 @@ Your job is to find all of the invalid IDs that appear in the given ranges. In t
   Adding up all the invalid IDs in this example produces `1227775554`.
 
 **What do you get if you add up all of the invalid IDs?**
+
+Your puzzle answer was `44854383294`.

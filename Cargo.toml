@@ -6,5 +6,9 @@ edition = "2024"
 [dependencies]
 
 [[bin]]
-name = "historian-hysteria"
+name = "secret-entrance"
 path = "src/day-1/secret-entrance.rs"
+
+[[bin]]
+name = "gift-shop"
+path = "src/day-2/gift-shop.rs"
