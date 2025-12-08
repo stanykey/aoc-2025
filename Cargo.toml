@@ -12,3 +12,7 @@ path = "src/day-1/secret-entrance.rs"
 [[bin]]
 name = "gift-shop"
 path = "src/day-2/gift-shop.rs"
+
+[[bin]]
+name = "lobby"
+path = "src/day-3/lobby.rs"
