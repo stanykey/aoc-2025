@@ -17,5 +17,6 @@ I've done that year's (2025) challenges for fun and to practice with Rust langua
 - [x] Day 1: Secret Entrance
 - [x] Day 2: Gift Shop
 - [x] Day 3: Lobby
+- [ ] Day 4: Printing Department
 
 ---

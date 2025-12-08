@@ -50,3 +50,7 @@ x.x.@@@.x.
 ```
 
 Consider your complete diagram of the paper roll locations. **How many rolls of paper can be accessed by a forklift?**
+
+Your puzzle answer was `1367`.
+
+**__The first half of this puzzle is complete! It provides one gold star: *__**
