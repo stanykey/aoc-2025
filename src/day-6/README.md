@@ -41,3 +41,7 @@ the problems clearly.
 
 Solve the problems on the math worksheet. **What is the grand total found by adding together all of the answers to the
 individual problems?**
+
+Your puzzle answer was `4878670269096`.
+
+**__The first half of this puzzle is complete! It provides one gold star: *__**
