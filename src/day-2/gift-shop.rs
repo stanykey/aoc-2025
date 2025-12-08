@@ -27,7 +27,7 @@ fn process_input(input: &str) -> Vec<Range> {
         .collect::<Vec<_>>()
 }
 
-fn check_id(id: i64) -> bool {
+fn check_id_by_part_one_rules(id: i64) -> bool {
     // convert to decimal string
     let s = id.to_string();
     let bytes = s.as_bytes();
@@ -48,23 +48,62 @@ fn check_id(id: i64) -> bool {
     &bytes[..mid] != &bytes[mid..]
 }
 
-fn count_invalid_ids(range: &Range) -> Vec<i64> {
+fn check_id_by_part_two_rules(id: i64) -> bool {
+    let s = id.to_string();
+    let bytes = s.as_bytes();
+    let len = bytes.len();
+
+    // ids are valid if:
+    // - length < 2 (can't be "pattern repeated at least twice")
+    // - or they start with '0' (we treat those as not-invalid per the puzzle)
+    if len < 2 || bytes[0] == b'0' {
+        return true;
+    }
+
+    // look for a period m such that:
+    // - m divides len
+    // - the number is (first m digits) repeated len/m times
+    for m in 1..=len / 2 {
+        if len % m != 0 {
+            continue;
+        }
+
+        let pattern = &bytes[..m];
+        if bytes.chunks(m).all(|chunk| chunk == pattern) {
+            // found a repeated pattern (at least twice because m <= len/2)
+            return false; // invalid
+        }
+    }
+
+    // no repeating pattern → valid
+    true
+}
+
+fn count_invalid_ids(range: &Range, function: fn(i64) -> bool) -> Vec<i64> {
     (range.first..=range.last)
-        .filter(|&id| !check_id(id))
-        .map(|id| id as i64)
+        .filter(|&id| !function(id)) // still: collect invalid IDs
         .collect()
 }
 
-fn process_ids(ranges: &[Range]) -> i64 {
-    ranges.iter().flat_map(count_invalid_ids).sum()
+fn process_ids_for_part_one(ranges: &[Range], function: fn(i64) -> bool) -> i64 {
+    ranges
+        .iter()
+        .flat_map(|range| count_invalid_ids(range, function))
+        .sum()
 }
 
 fn main() -> io::Result<()> {
     let input = include_str!("input.data").trim();
 
     let ranges = process_input(input);
-    let result = process_ids(&ranges);
-    println!("The result is {}", result);
+    println!(
+        "The result for part one is {}",
+        process_ids_for_part_one(&ranges, check_id_by_part_one_rules)
+    );
+    println!(
+        "The result for part two is {}",
+        process_ids_for_part_one(&ranges, check_id_by_part_two_rules)
+    );
 
     Ok(())
 }
