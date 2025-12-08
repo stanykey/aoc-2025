@@ -20,6 +20,6 @@ to do a job in seconds under debug build configuration.
 - [x] Day 3: Lobby
 - [x] Day 4: Printing Department
 - [x] Day 5: Cafeteria
-- [ ] Day 6: Trash Compactor
+- [x] Day 6: Trash Compactor
 
 ---

@@ -76,3 +76,7 @@ Now, the grand total is `1058` + `3253600` + `625` + `8544` = **3263827**.
 
 Solve the problems on the math worksheet again. **What is the grand total found by adding together all of the answers to
 the individual problems?**
+
+Your puzzle answer was `8674740488592`.
+
+**__Both parts of this puzzle are complete! They provide two gold stars: **__**
