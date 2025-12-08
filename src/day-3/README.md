@@ -81,3 +81,7 @@ Now, the joltages are much larger:
   *3121910778619**.
 
 **What is the new total output joltage?**
+
+Your puzzle answer was `169512729575727`.
+
+**__Both parts of this puzzle are complete! They provide two gold stars: **__**

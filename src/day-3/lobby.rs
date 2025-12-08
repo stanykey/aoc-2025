@@ -59,8 +59,11 @@ impl Bank {
     }
 }
 
-fn process_banks(banks: &Vec<Bank>) -> u64 {
-    banks.iter().map(|bank| bank.max_joltage(2)).sum()
+fn process_banks(banks: &Vec<Bank>, batteries_count: usize) -> u64 {
+    banks
+        .iter()
+        .map(|bank| bank.max_joltage(batteries_count))
+        .sum()
 }
 
 fn process_input(input: &str) -> Vec<Bank> {
@@ -74,7 +77,14 @@ fn main() -> io::Result<()> {
     let input = include_str!("input.data").trim();
 
     let banks = process_input(input);
-    println!("The answer for part one is : {:?}", process_banks(&banks));
+    println!(
+        "The answer for part one is : {:?}",
+        process_banks(&banks, 2)
+    );
+    println!(
+        "The answer for part two is : {:?}",
+        process_banks(&banks, 12)
+    );
 
     Ok(())
 }
