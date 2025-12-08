@@ -21,6 +21,10 @@ impl FromStr for Range {
 }
 
 impl Range {
+    fn len(&self) -> u64 {
+        self.last - self.first + 1
+    }
+
     fn check(&self, number: u64) -> bool {
         number >= self.first && number <= self.last
     }
@@ -93,7 +97,7 @@ impl Database {
         }
     }
 
-    fn count_fresh_ingredients(&self) -> Vec<u64> {
+    fn count_fresh_ingredients(&self) -> usize {
         self.ingredients
             .iter()
             .copied()
@@ -101,7 +105,11 @@ impl Database {
                 // true if any range contains this value
                 self.ranges.iter().any(|range| range.check(value))
             })
-            .collect()
+            .count()
+    }
+
+    fn count_all_fresh_ingredients(&self) -> usize {
+        self.ranges.iter().map(|range| range.len()).sum::<u64>() as usize
     }
 }
 
@@ -110,7 +118,11 @@ fn main() -> io::Result<()> {
     let database = Database::from_str(input).unwrap();
     println!(
         "The answer for part one is {}",
-        database.count_fresh_ingredients().len()
+        database.count_fresh_ingredients()
+    );
+    println!(
+        "The answer for part two is {}",
+        database.count_all_fresh_ingredients()
     );
     Ok(())
 }
