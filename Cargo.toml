@@ -28,3 +28,7 @@ path = "src/day-5/cafeteria.rs"
 [[bin]]
 name = "trash-compactor"
 path = "src/day-6/trash-compactor.rs"
+
+[[bin]]
+name = "laboratories"
+path = "src/day-7/laboratories.rs"

@@ -150,3 +150,7 @@ To repair the teleporter, you first need to understand the beam-splitting proper
 example, a tachyon beam is split a total of `21` times.
 
 Analyze your manifold diagram. **How many times will the beam be split?**
+
+Your puzzle answer was `1602`.
+
+**__The first half of this puzzle is complete! It provides one gold star: *__**
