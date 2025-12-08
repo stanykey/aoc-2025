@@ -46,3 +46,7 @@ as follows:
 
 Process the database file from the new inventory management system. **How many of the available ingredient IDs are
 fresh?**
+
+Your puzzle answer was `679`.
+
+**__The first half of this puzzle is complete! It provides one gold star: *__**
