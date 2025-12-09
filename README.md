@@ -23,5 +23,6 @@ to do a job in seconds under debug build configuration.
 - [x] Day 6: Trash Compactor
 - [x] Day 7: Laboratories
 - [x] Day 8: Playground
+- [ ] Day 9: Movie Theater
 
 ---
