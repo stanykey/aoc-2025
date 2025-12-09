@@ -13,7 +13,7 @@ impl Point {
         let dy = (self.y - other.y) as f64;
         let dz = (self.z - other.z) as f64;
 
-        ((dx * dx + dy * dy + dz * dz).sqrt()) as i64
+        (dx * dx + dy * dy + dz * dz).sqrt() as i64
     }
 }
 
@@ -32,6 +32,31 @@ fn load_points(input: &str) -> Vec<Point> {
         .collect::<Vec<_>>()
 }
 
+#[derive(Debug, Clone, Copy)]
+struct Edge {
+    distance: i64,
+    first: usize,
+    second: usize,
+}
+
+fn build_edges(points: &[Point]) -> Vec<Edge> {
+    let count = points.len();
+    let mut edges = Vec::with_capacity(count * (count.saturating_sub(1)) / 2);
+
+    for i in 0..count {
+        for j in (i + 1)..count {
+            edges.push(Edge {
+                distance: points[i].euclidean_distance(&points[j]),
+                first: i,
+                second: j,
+            });
+        }
+    }
+
+    edges.sort_unstable_by_key(|edge| edge.distance);
+    edges
+}
+
 struct DisjointSet {
     parent: Vec<usize>,
     size: Vec<usize>,
@@ -45,57 +70,44 @@ impl DisjointSet {
         }
     }
 
-    fn find(&mut self, x: usize) -> usize {
-        if self.parent[x] != x {
-            let root = self.find(self.parent[x]);
-            self.parent[x] = root;
+    fn find(&mut self, value: usize) -> usize {
+        if self.parent[value] != value {
+            let root = self.find(self.parent[value]);
+            self.parent[value] = root;
         }
-        self.parent[x]
+        self.parent[value]
     }
 
-    fn union(&mut self, a: usize, b: usize) {
-        let mut ra = self.find(a);
-        let mut rb = self.find(b);
-        if ra == rb {
+    fn union(&mut self, first: usize, second: usize) {
+        let mut first = self.find(first);
+        let mut second = self.find(second);
+        if first == second {
             return;
         }
 
-        if self.size[ra] < self.size[rb] {
-            std::mem::swap(&mut ra, &mut rb);
+        if self.size[first] < self.size[second] {
+            std::mem::swap(&mut first, &mut second);
         }
 
-        self.parent[rb] = ra;
-        self.size[ra] += self.size[rb];
+        self.parent[second] = first;
+        self.size[first] += self.size[second];
     }
 }
 
-fn solution_for_part_one(points: &Vec<Point>) -> usize {
-    let points_count = points.len();
+fn solution_for_part_one(points: &Vec<Point>, edges: &Vec<Edge>, connection_count: usize) -> usize {
+    let mut dsu = DisjointSet::new(points.len());
 
-    // build all unordered pairs (i < j) with their squared distance.
-    let mut edges = Vec::new();
-    edges.reserve(points_count * (points_count.saturating_sub(1)) / 2);
-    for i in 0..points_count {
-        for j in (i + 1)..points_count {
-            let distance = points[i].euclidean_distance(&points[j]);
-            edges.push((distance, i, j));
-        }
-    }
-    edges.sort_unstable_by_key(|&(distance, _, _)| distance);
-
-    let mut dsu = DisjointSet::new(points_count);
-
-    for &(_, a, b) in edges.iter().take(1000) {
-        dsu.union(a, b);
+    for edge in edges.iter().take(connection_count) {
+        dsu.union(edge.first, edge.second);
     }
 
     // find component sizes: compress paths first.
-    for i in 0..points_count {
+    for i in 0..points.len() {
         let _ = dsu.find(i);
     }
 
     let mut circuits_sizes = Vec::new();
-    for i in 0..points_count {
+    for i in 0..points.len() {
         if dsu.parent[i] == i {
             circuits_sizes.push(dsu.size[i]);
         }
@@ -106,13 +118,43 @@ fn solution_for_part_one(points: &Vec<Point>) -> usize {
     circuits_sizes[0] * circuits_sizes[1] * circuits_sizes[2]
 }
 
+fn solution_for_part_two(points: &Vec<Point>, edges: &Vec<Edge>) -> usize {
+    let mut components = points.len();
+    let mut dsu = DisjointSet::new(components);
+
+    for edge in edges {
+        let first = dsu.find(edge.first);
+        let second = dsu.find(edge.second);
+        if first != second {
+            dsu.union(edge.first, edge.second);
+            components -= 1;
+
+            if components == 1 {
+                // this is the final needed connection
+                return (points[edge.first].x * points[edge.second].x)
+                    .try_into()
+                    .unwrap_or_else(|_| panic!("overflow"));
+            }
+        }
+    }
+
+    panic!("Graph never became fully connected");
+}
+
 fn main() -> io::Result<()> {
+    let file_name = "input.data";
     let input = include_str!("input.data").trim();
 
     let points = load_points(input);
+    let edges = build_edges(&points);
+    let connection_count = if file_name == "input.data" { 1000 } else { 10 };
     println!(
         "The answer for part one is {}",
-        solution_for_part_one(&points)
+        solution_for_part_one(&points, &edges, connection_count)
+    );
+    println!(
+        "The answer for part two is {}",
+        solution_for_part_two(&points, &edges)
     );
 
     Ok(())

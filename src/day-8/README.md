@@ -90,3 +90,7 @@ from the wall so they can pick the right extension cable; multiplying the `X` co
 
 Continue connecting the closest unconnected pairs of junction boxes together until they're all in the same circuit.
 **What do you get if you multiply together the X coordinates of the last two junction boxes you need to connect?**
+
+Your puzzle answer was `8520040659`.
+
+**__Both parts of this puzzle are complete! They provide two gold stars: **__**
