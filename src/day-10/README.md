@@ -121,3 +121,7 @@ So, the fewest button presses required to correctly configure the joltage level 
 
 Analyze each machine's joltage requirements and button wiring schematics. **What is the fewest button presses required
 to correctly configure the joltage level counters on all of the machines?**
+
+Your puzzle answer was `19857`.
+
+**__Both parts of this puzzle are complete! They provide two gold stars: **__**
