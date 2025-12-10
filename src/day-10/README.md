@@ -67,3 +67,7 @@ So, the fewest button presses required to correctly configure the indicator ligh
 
 Analyze each machine's indicator light diagram and button wiring schematics. **What is the fewest button presses
 required to correctly configure the indicator lights on all of the machines?**
+
+Your puzzle answer was `512`.
+
+**__The first half of this puzzle is complete! It provides one gold star: *__**
