@@ -52,3 +52,7 @@ In this example, these are all of the paths from `you` to `out`:
   In total, there are **5** different paths leading from `you` to `out`.
 
 **How many different paths lead from you to out?**
+
+Your puzzle answer was `497`.
+
+**__The first half of this puzzle is complete! It provides one gold star: *__**

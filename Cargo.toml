@@ -44,3 +44,7 @@ path = "src/day-9/movie-theater.rs"
 [[bin]]
 name = "factory"
 path = "src/day-10/factory.rs"
+
+[[bin]]
+name = "reactor"
+path = "src/day-11/reactor.rs"
