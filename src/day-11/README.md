@@ -100,3 +100,7 @@ svr,bbb,tty,ccc,eee,dac,fff,hhh,out
 However, only **2** paths from `svr` to `out` visit both `dac` and `fft`.
 
 Find all of the paths that lead from svr to out. **How many of those paths visit both dac and fft?**
+
+Your puzzle answer was `358564784931864`.
+
+**__Both parts of this puzzle are complete! They provide two gold stars: **__**

@@ -25,6 +25,6 @@ to do a job in seconds under debug build configuration.
 - [x] Day 8: Playground
 - [ ] Day 9: Movie Theater
 - [x] Day 10: Factory
-- [ ] Day 11: Reactor
+- [x] Day 11: Reactor
 
 ---
